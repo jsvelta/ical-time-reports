@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="title">List of Users</ui:define>
+
+    <ui:define name="body">
+        <h:form>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">List of Users</h3>
+                </div>
+                <h:dataTable value="#{userController.items}"
+                             var="user"
+                             class="table table-striped table-hover">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="ID" />
+                        </f:facet>
+                        <h:outputText value="#{user.id}" />
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="First Name" />
+                        </f:facet>
+                        <h:outputText value="#{user.firstname}" />
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Last Name" />
+                        </f:facet>
+                        <h:outputText value="#{user.lastname}" />
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Username" />
+                        </f:facet>
+                        <h:outputText value="#{user.username}" />
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="&#xA0;" />
+                        </f:facet>
+                        <h:commandLink action="#{userController.prepareView}" class="btn btn-xs btn-default">
+                            <h:panelGroup class="glyphicon glyphicon-eye-open" />
+                            <h:outputText value=" View" />
+                        </h:commandLink>
+                        <h:outputText value=" " />
+                        <h:commandLink action="#{userController.prepareEdit}" class="btn btn-xs btn-default">
+                            <h:panelGroup class="glyphicon glyphicon-edit" />
+                            <h:outputText value=" Edit" />
+                        </h:commandLink>
+                        <h:outputText value=" " />
+                        <h:commandLink class="btn btn-xs btn-danger">
+                            <h:panelGroup class="glyphicon glyphicon-remove" />
+                            <h:outputText value=" Delete" />
+                        </h:commandLink>
+                    </h:column>
+                </h:dataTable>
+            </div>
+            <h:commandLink value="Create New User" action="Create" class="btn btn-default"/>
+            <h:outputText value=" "/>
+            <h:commandLink value="Index" action="/index" immediate="true" class="btn btn-default"/>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="title">
+        <h:outputText value="Profile of #{userController.selected.firstname} #{userController.selected.lastname}"/>
+    </ui:define>
+
+    <ui:define name="body">
+        <h:form>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><h:outputText value="Profile of #{userController.selected.firstname} #{userController.selected.lastname}"/></h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-sm-2">
+                        <b><h:outputText value="ID:"/></b>
+                    </div>
+                    <div class="col-sm-10">
+                        <h:outputText value="#{userController.selected.id}"/>
+                    </div>
+                    <div class="col-sm-2">
+                        <b><h:outputText value="First Name:"/></b>
+                    </div>
+                    <div class="col-sm-10">
+                        <h:outputText value="#{userController.selected.firstname}"/>
+                    </div>
+                    <div class="col-sm-2">
+                        <b><h:outputText value="Last Name:"/></b>
+                    </div>
+                    <div class="col-sm-10">
+                        <h:outputText value="#{userController.selected.lastname}"/>
+                    </div>
+                    <div class="col-sm-2">
+                        <b><h:outputText value="Username:"/></b>
+                    </div>
+                    <div class="col-sm-10">
+                        <h:outputText value="#{userController.selected.username}"/>
+                    </div>
+                    <br/>
+                </div>
+            </div>
+            <h:commandLink action="#{userController.destroyAndView}" value="Delete" class="btn btn-danger"/>
+            <h:outputText value=" "/>
+            <h:commandLink action="Edit" value="Edit" class="btn btn-default"/>
+            <h:outputText value=" "/>
+            <h:commandLink action="#{userController.prepareCreate}" value="Create New User" class="btn btn-default"/>
+            <h:outputText value=" "/>
+            <h:commandLink action="#{userController.prepareList}" value="Show All Users" class="btn btn-default"/>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

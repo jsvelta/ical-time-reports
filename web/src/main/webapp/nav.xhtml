@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:form rendered="#{loginController.loggedIn}">
+        <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <h:commandLink class="navbar-brand" action="/index" value="iCal Time Reports"/>
+                </div>
+
+                <div class="collapse navbar-collapse" id="navigation">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage Keyword <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><h:commandLink action="/keyword/List" value="List of Keywords" /></li>
+                                <li><h:commandLink action="/keyword/ImportCalendar" value="Gather from Calendar" /></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage Calendars <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><h:commandLink action="/calendar/List" value="List of Calendars" /></li>
+                                <li><h:commandLink action="/calendar/Create" value="Create New Calendar" /></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage Users <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><h:commandLink action="/user/List" value="List of Users" /></li>
+                                <li><h:commandLink action="/user/Create" value="Create New User" /></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <p class="navbar-text">
+                                <span class="glyphicon glyphicon-user"></span>&#xA0;
+                                <h:outputText value="#{loginController.authenticatedUser.firstname}" />&#xA0;
+                                <h:outputText value="#{loginController.authenticatedUser.lastname}" />
+                            </p>
+                        </li>
+                        <li>
+                            <h:commandLink action="#{loginController.logout}">
+                                <span class="glyphicon glyphicon-log-out"></span> Log out
+                            </h:commandLink>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </h:form>
+</ui:composition>
