@@ -81,5 +81,6 @@
         <module>entities</module>
         <module>web</module>
         <module>swing-gui</module>
+        <module>statistics</module>
     </modules>
 </project>

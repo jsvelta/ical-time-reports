@@ -286,7 +286,7 @@ public class KeywordController implements Serializable {
             if (pattern != null && !pattern.isEmpty()) {
                 filter.setRegex(getPattern());
             }
-            filter.setIgnoreDiacritics(isIgnoreDiacritics());
+            filter.setRemoveDiacritics(isIgnoreDiacritics());
             filter.setCaseSensitive(isCaseSensitive());
             return filter;
         }

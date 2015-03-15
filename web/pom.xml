@@ -21,6 +21,11 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
+            <artifactId>statistics</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
             <artifactId>entities</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -29,11 +34,6 @@
             <artifactId>javaee-api</artifactId>
             <version>${javaee.api.version}</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mnode.ical4j</groupId>
-            <artifactId>ical4j</artifactId>
-            <version>${ical4j.version}</version>
         </dependency>
     </dependencies>
 

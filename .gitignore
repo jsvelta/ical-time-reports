@@ -13,3 +13,4 @@ hs_err_pid*
 /entities/target/
 /web/target/
 /swing-gui/target/
+/statistics/target/
