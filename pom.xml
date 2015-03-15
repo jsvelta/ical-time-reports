@@ -18,6 +18,11 @@
         <maven.compiler.plugin.version>3.2</maven.compiler.plugin.version>
         <maven.war.plugin.version>2.6</maven.war.plugin.version>
         <maven.clean.plugin.version>2.6.1</maven.clean.plugin.version>
+
+        <poi-ooxml.version>3.11</poi-ooxml.version>
+        <commons-io.version>1.4</commons-io.version>
+        <joda-time.version>2.7</joda-time.version>
+        <jcalendar.version>1.4</jcalendar.version>
     </properties>
 
     <repositories>
@@ -74,6 +79,7 @@
     </build>
     <modules>
         <module>entities</module>
-    <module>web</module>
-  </modules>
+        <module>web</module>
+        <module>swing-gui</module>
+    </modules>
 </project>
