@@ -3,7 +3,7 @@ package sk.svelta.icaltimereports.web;
 import cz.krasny.icalstats.data.classes.ICalFile;
 import cz.krasny.icalstats.data.classes.Keyword;
 import java.io.Serializable;
-import java.io.StringReader;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,7 +18,6 @@ import sk.svelta.icaltimereports.ejb.CalendarFacade;
 import sk.svelta.icaltimereports.entity.Calendar;
 
 /**
- *
  * @author Jaroslav Švelta
  */
 @Named
@@ -48,7 +47,8 @@ public class KeywordController implements Serializable {
 
         CalendarBuilder cb = new CalendarBuilder();
         try {
-            net.fortuna.ical4j.model.Calendar iCalendar = cb.build(new StringReader(selectedCalendar.getContent()));
+            URL url = new URL(selectedCalendar.getUrl());
+            net.fortuna.ical4j.model.Calendar iCalendar = cb.build(url.openStream());
             ICalFile iCalFile = new ICalFile(iCalendar);
             items = iCalFile.getKeywordsList(getGatheringSettings().toKeywordsFilter());
             result = "List";

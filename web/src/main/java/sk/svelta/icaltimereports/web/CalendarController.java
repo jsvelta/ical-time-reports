@@ -1,17 +1,13 @@
 package sk.svelta.icaltimereports.web;
 
-import java.io.InputStreamReader;
 import java.io.Serializable;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.model.ListDataModel;
-import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.http.Part;
 import sk.svelta.icaltimereports.ejb.CalendarFacade;
 import sk.svelta.icaltimereports.entity.Calendar;
 import sk.svelta.icaltimereports.web.util.JsfUtil;
@@ -32,7 +28,6 @@ public class CalendarController implements Serializable {
     private ListDataModel<Calendar> items;
     private Calendar selected;
     private int selectedItemIndex;
-    private Part file;
 
     @EJB
     private CalendarFacade ejbFacade;
@@ -105,15 +100,7 @@ public class CalendarController implements Serializable {
 
     public PageNavigation create() {
         PageNavigation result = null;
-        try (InputStreamReader reader = new InputStreamReader(file.getInputStream(), "utf-8")) {
-        StringBuilder content = new StringBuilder();
-            char[] buffer = new char[100];
-            int length;
-            while ((length = reader.read(buffer)) != -1) {
-                content.append(buffer, 0, length);
-            }
-            selected.setContent(content.toString());
-            selected.setFileName(file.getSubmittedFileName());
+        try {
             getFacade().create(selected);
             JsfUtil.addSuccessMessage("Calendar was successfully created.");
             recreateModel();
@@ -123,39 +110,6 @@ public class CalendarController implements Serializable {
             JsfUtil.addErrorMessage(e, "An unexpected error occurred during calendar creation. Please try again.");
         }
         return result;
-    }
-
-    /**
-     * Get list of calnedars in format for selectOneListbox component
-     *
-     * @return list of calendars
-     */
-    public SelectItem[] getSelectOneItems() {
-        List<Calendar> calendars = getFacade().findAll();
-        SelectItem[] items = new SelectItem[calendars.size()];
-        int i = 0;
-        for (Calendar calendar : calendars) {
-            items[i++] = new SelectItem(calendar.getId(), calendar.getName());
-        }
-        return items;
-    }
-
-     /**
-     * Get the value of file
-     *
-     * @return the value of file
-     */
-   public Part getFile() {
-        return file;
-    }
-
-    /**
-     * Set the value of file
-     *
-     * @param file new value of file
-     */
-    public void setFile(Part file) {
-        this.file = file;
     }
 
 }

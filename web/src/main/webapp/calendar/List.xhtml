@@ -30,17 +30,11 @@
 
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="Name" />
+                            <h:outputText value="URL" />
                         </f:facet>
-                        <h:outputText value="#{item.name}" />
+                        <h:outputText value="#{item.url}" />
                     </h:column>
 
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Filename" />
-                        </f:facet>
-                        <h:outputText value="#{item.fileName}" />
-                    </h:column>
                 </h:dataTable>
             </div>
             <h:commandLink value="Create New Calendar" action="#{calendarController.prepareCreate}" class="btn btn-default"/>

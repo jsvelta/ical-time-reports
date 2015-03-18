@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Size;
 
@@ -28,17 +27,11 @@ public class Calendar implements Serializable {
     private Integer id;
 
     @Basic(optional = false)
-    @Size(min = 3, max = 50)
+    @Size(min = 1, max = 50)
     private String name;
 
     @Basic(optional = false)
-    @Size(min = 1, max = 50)
-    private String fileName;
-
-    @Basic(optional = false)
-    @Lob
-    private String content;
-
+    private String url;
 
     @JoinColumn(name = "PERSON_ID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
@@ -84,39 +77,21 @@ public class Calendar implements Serializable {
     }
 
     /**
-     * Get the value of fileName
+     * Get the value of url
      *
-     * @return the value of fileName
+     * @return the value of url
      */
-    public String getFileName() {
-        return fileName;
+    public String getUrl() {
+        return url;
     }
 
     /**
-     * Set the value of fileName
+     * Set the value of url
      *
-     * @param fileName new value of fileName
+     * @param url new value of url
      */
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
-
-    /**
-     * Get the value of content
-     *
-     * @return the value of content
-     */
-    public String getContent() {
-        return content;
-    }
-
-    /**
-     * Set the value of content
-     *
-     * @param content new value of content
-     */
-    public void setContent(String content) {
-        this.content = content;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     /**
@@ -161,7 +136,7 @@ public class Calendar implements Serializable {
 
     @Override
     public String toString() {
-        return "ICalendar{" + "id=" + id + ", name=" + name + ", fileName=" + fileName + ", content=" + content + ", user=" + user + '}';
+        return "Calendar{" + "id=" + id + ", url=" + url + ", user=" + user + '}';
     }
 
 }
