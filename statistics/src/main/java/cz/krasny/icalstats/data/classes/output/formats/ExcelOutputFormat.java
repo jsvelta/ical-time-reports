@@ -1,11 +1,11 @@
 package cz.krasny.icalstats.data.classes.output.formats;
 
-import cz.krasny.icalstats.data.classes.output.ExportConfiguration;
 import cz.krasny.icalstats.data.classes.ICalFile;
 import cz.krasny.icalstats.data.classes.Keyword;
 import cz.krasny.icalstats.data.classes.MyEvent;
 import cz.krasny.icalstats.data.classes.output.AOutputFormat;
 import cz.krasny.icalstats.data.classes.output.DataTransformer;
+import cz.krasny.icalstats.data.classes.output.ExportConfiguration;
 import java.awt.Color;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -38,7 +38,7 @@ import org.joda.time.format.DateTimeFormatter;
  * @author Tomas Krasny
  */
 public class ExcelOutputFormat extends AOutputFormat{
-    
+
     private static final DateTimeFormatter DATE_FORMAT_WEEKS = DateTimeFormat.forPattern("dd.MM.yyyy");
     private static final DateTimeFormatter DATE_FORMAT_MONTHS = DateTimeFormat.forPattern("MMMM yyyy");
     private static final DateTimeFormatter DATE_FORMAT_DAYS = DateTimeFormat.forPattern("dd.MM.yyyy");
@@ -46,7 +46,7 @@ public class ExcelOutputFormat extends AOutputFormat{
     private static final DateTimeFormatter MONTH = DateTimeFormat.forPattern("MMMM");
     private static final int START_ROW_CONFIGURATION_SUMMARY = 1;
     private static final int START_ROW_STATISTICS = 0;
-    
+
     private ExportConfiguration ec = null;
     private DataTransformer data_t = null;
     private List<String> keywords = null;
@@ -55,7 +55,7 @@ public class ExcelOutputFormat extends AOutputFormat{
     private Sheet sheet = null;
     private short pointerX = 0;
     private short pointerY = 0;
-    
+
     private void generatePerIndividualEvents(){
         sheet = workbook.createSheet("Statistics per individual events");
         sheet.createFreezePane(0, 2);
@@ -124,7 +124,7 @@ public class ExcelOutputFormat extends AOutputFormat{
                 addCell(duration, pointerX, pointerY++, styles.getStyleSummaryRowFirstKeyword(pointerX));
                 setCellValue(duration + getCellNumericValue(1, pointerY-1), 1, pointerY-1);
             }
-            else 
+            else
                 addCell(0, pointerX, pointerY++, styles.getStyleSummaryRowFirstKeyword(pointerX));
             for(int j = 0; j < keywords.size() ; j++){
                 //duration
@@ -146,7 +146,7 @@ public class ExcelOutputFormat extends AOutputFormat{
             pointerY = 0;
         }
     }
-    
+
     private void generatePerDays() throws Exception{
         sheet = workbook.createSheet("Statistics per days");
         sheet.createFreezePane(0, 2);
@@ -170,7 +170,7 @@ public class ExcelOutputFormat extends AOutputFormat{
             }
             if(ec.isIncludeEventDayOfWeek()){
                 addCell("day", pointerX, pointerY, styles.getStyleHeader());
-                addCell("", pointerX+1, pointerY++, styles.getStyleTotalSummaryRow());                
+                addCell("", pointerX+1, pointerY++, styles.getStyleTotalSummaryRow());
             }
         }
         addCell("sum", pointerX, pointerY, styles.getStyleHeaderLeftBold());
@@ -274,7 +274,7 @@ public class ExcelOutputFormat extends AOutputFormat{
             pointerY = 0;
         }
     }
-    
+
     private void generatePerWeeks() throws Exception{
         sheet = workbook.createSheet("Statistics per weeks");
         sheet.createFreezePane(0, 2);
@@ -319,7 +319,7 @@ public class ExcelOutputFormat extends AOutputFormat{
         addCell("total", pointerX, pointerY, styles.getStyleHeaderLeftBold());
         addCell(0, pointerX+1, pointerY++, styles.getStyleTotalSummaryRowLeftBold());
         //move due to summary yellow row
-        pointerX++;        
+        pointerX++;
     }
     private void writePerWeekData() throws Exception{
         pointerX++;
@@ -409,8 +409,8 @@ public class ExcelOutputFormat extends AOutputFormat{
             pointerY = 0;
         }
     }
-    
-    
+
+
     private void generatePerMonths() throws Exception{
         sheet = workbook.createSheet("Statistics per months");
         sheet.createFreezePane(0, 2);
@@ -455,7 +455,7 @@ public class ExcelOutputFormat extends AOutputFormat{
         addCell("total", pointerX, pointerY, styles.getStyleHeaderLeftBold());
         addCell(0, pointerX+1, pointerY++, styles.getStyleTotalSummaryRowLeftBold());
         //move due to summary yellow row
-        pointerX++;   
+        pointerX++;
     }
     private void writePerMonthData() throws Exception{
         pointerX++;
@@ -544,7 +544,7 @@ public class ExcelOutputFormat extends AOutputFormat{
             pointerY = 0;
         }
     }
-    
+
     private void generatePerYears(){
         sheet = workbook.createSheet("Statistics per years");
         sheet.createFreezePane(0, 2);
@@ -587,7 +587,7 @@ public class ExcelOutputFormat extends AOutputFormat{
         addCell("total", pointerX, pointerY, styles.getStyleHeaderLeftBold());
         addCell(0, pointerX+1, pointerY++, styles.getStyleTotalSummaryRowLeftBold());
         //move due to summary yellow row
-        pointerX++;        
+        pointerX++;
     }
     private void writePerYearData(){
         pointerX++;
@@ -672,83 +672,83 @@ public class ExcelOutputFormat extends AOutputFormat{
             }
             pointerY = 0;
         }
-    } 
-    
-    
+    }
+
+
     private void writeConfigurationSummary(){
         pointerX = START_ROW_CONFIGURATION_SUMMARY;
         pointerY = 0;
         sheet = workbook.createSheet("Configuration");
         sheet.addMergedRegion(new CellRangeAddress(pointerX, pointerX, pointerY, pointerY+3));
         addCell("Configuration summary", pointerX++, pointerY, null);
-        
+
         sheet.addMergedRegion(new CellRangeAddress(pointerX, pointerX, pointerY, pointerY+3));
         pointerX++;
-    
+
         sheet.addMergedRegion(new CellRangeAddress(pointerX, pointerX, pointerY, pointerY+3));
         addCell("Group by:", pointerX, pointerY, null);
         addCell(ec.getGroupBy().toString(), pointerX++, pointerY+4, null);
-        
+
         sheet.addMergedRegion(new CellRangeAddress(pointerX, pointerX, pointerY, pointerY+3));
         addCell("Unit:", pointerX, pointerY, null);
         addCell(ec.getUnit().toString(), pointerX++, pointerY+4, null);
-        
+
         sheet.addMergedRegion(new CellRangeAddress(pointerX, pointerX, pointerY, pointerY+3));
         addCell("Include event's:", pointerX, pointerY, null);
         addCell(ec.isIncludeEvents()?"Yes":"No", pointerX++, pointerY+4, null);
-        
+
         sheet.addMergedRegion(new CellRangeAddress(pointerX, pointerX, pointerY, pointerY+3));
         addCell("Include event's day of week:", pointerX, pointerY, null);
         addCell(ec.isIncludeEventDayOfWeek()?"Yes":"No", pointerX++, pointerY+4, null);
-        
+
         sheet.addMergedRegion(new CellRangeAddress(pointerX, pointerX, pointerY, pointerY+3));
         addCell("Include event's date:", pointerX, pointerY, null);
         addCell(ec.isIncludeEventDate()?"Yes":"No", pointerX++, pointerY+4, null);
-        
+
         sheet.addMergedRegion(new CellRangeAddress(pointerX, pointerX, pointerY, pointerY+3));
         addCell("Include event's from-to:", pointerX, pointerY, null);
         addCell(ec.isIncludeEventFromTo()?"Yes":"No", pointerX++, pointerY+4, null);
-        
+
         sheet.addMergedRegion(new CellRangeAddress(pointerX, pointerX, pointerY, pointerY+3));
         addCell("Include empty rows:", pointerX, pointerY, null);
         addCell(ec.isIncludeEmptyRows()?"Yes":"No", pointerX++, pointerY+4, null);
-        
+
         sheet.addMergedRegion(new CellRangeAddress(pointerX, pointerX, pointerY, pointerY+3));
         addCell("Output format:", pointerX,pointerY, null);
         addCell(ec.getOutputFormat().toString(), pointerX++, pointerY+4, null);
-        
+
         sheet.addMergedRegion(new CellRangeAddress(pointerX, pointerX, pointerY, pointerY+3));
         addCell("Include whole calendar:", pointerX, pointerY, null);
         addCell(ec.getDateRange().isIncludedWholeCalendar()?"Yes":"No", pointerX++, pointerY+4, null);
-        
+
         sheet.addMergedRegion(new CellRangeAddress(pointerX, pointerX, pointerY, pointerY+3));
         addCell("Date from:", pointerX, pointerY, null);
         addCell(ec.getDateRange().getDateFrom(), pointerX++, pointerY+4, styles.getStyleDate());
-        
+
         sheet.addMergedRegion(new CellRangeAddress(pointerX, pointerX, pointerY, pointerY+3));
         addCell("Date to:", pointerX, pointerY, null);
         addCell(ec.getDateRange().getDateTo(), pointerX++, pointerY+4, styles.getStyleDate());
-                
+
         sheet.addMergedRegion(new CellRangeAddress(pointerX, pointerX, pointerY, pointerY+3));
         addCell("Remove diacritics:", pointerX, pointerY, null);
         addCell(ec.isRemoveDiacritics()?"Yes":"No", pointerX++, pointerY+4, styles.getStyleDate());
-                
+
         sheet.addMergedRegion(new CellRangeAddress(pointerX, pointerX, pointerY, pointerY+3));
         addCell("Case sensitive:", pointerX, pointerY, null);
         addCell(ec.isCaseSensitive()?"Yes":"No", pointerX++, pointerY+4, styles.getStyleDate());
-        
+
         sheet = workbook.getSheetAt(0);
     }
     private double getDuration(MyEvent event, String keyword){
         double dur = 0;
-        if(!event.getWords().contains(keyword) && !keyword.equals("")) 
+        if(!event.getWords().contains(keyword) && !keyword.equals(""))
             return dur;
         dur = event.getDuration(ec.getUnit());
         return dur;
     }
     private double getDuration(List<MyEvent> events, String keyword){
         double dur = 0;
-        if(events == null) 
+        if(events == null)
             return dur;
         for(MyEvent event: events){
             dur += getDuration(event, keyword);
@@ -771,12 +771,12 @@ public class ExcelOutputFormat extends AOutputFormat{
                 cell.setCellValue((Calendar) content);
             else
                 cell.setCellValue(content.toString());
-            if(style != null) 
+            if(style != null)
                 cell.setCellStyle(style);
             sheet.autoSizeColumn(columnIndex);
         }
         catch(Exception ex){
-            String err_text = ""; 
+            String err_text = "";
             cz.krasny.icalstats.data.classes.Logger.appendException(ex);
             err_text += ex.getMessage() + System.getProperty("line.separator") + System.getProperty("line.separator");
             err_text += "See log.txt for more details.";
@@ -803,7 +803,7 @@ public class ExcelOutputFormat extends AOutputFormat{
             cz.krasny.icalstats.data.classes.Logger.appendException(ex);
             err_text += ex.getMessage() + System.getProperty("line.separator") + System.getProperty("line.separator");
             err_text += "See log.txt for more details.";
-            System.out.println(err_text);            
+            System.out.println(err_text);
         }
     }
     private double getCellNumericValue(int rowIndex, int columnIndex){
@@ -814,17 +814,20 @@ public class ExcelOutputFormat extends AOutputFormat{
             if(containsKeyword(event, keywords))
                 with_kw.add(event);
             else
-                without_kw.add(event);                
+                without_kw.add(event);
         }
     }
     private boolean containsKeyword(MyEvent event, List<String> keywords){
         List<String> words = event.getWords();
+        if (words == null) {
+            return false;
+        }
         for(String keyword: keywords)
             if(words.contains(keyword))
                 return true;
         return false;
     }
-    
+
     private void includeEmptyRowsDays(TreeMap<String, List<MyEvent>> data) {
         //key: "3.4.2013"
         String first_key = data.firstKey();
@@ -853,7 +856,7 @@ public class ExcelOutputFormat extends AOutputFormat{
             if(!data.containsKey(mapkey))
                 data.put(mapkey, new ArrayList<MyEvent>());
             first_key = mapkey;
-        }        
+        }
     }
     private void includeEmptyRowsMonths(TreeMap<String, List<MyEvent>> data) {
         //key: "April 2013"
@@ -868,7 +871,7 @@ public class ExcelOutputFormat extends AOutputFormat{
             if(!data.containsKey(mapkey))
                 data.put(mapkey, new ArrayList<MyEvent>());
             first_key = mapkey;
-        }   
+        }
     }
     private void includeEmptyRowsYears(TreeMap<Integer, List<MyEvent>> data) {
         //key: "2013"
@@ -882,9 +885,9 @@ public class ExcelOutputFormat extends AOutputFormat{
             if(!data.containsKey(mapkey))
                 data.put(mapkey, new ArrayList<MyEvent>());
             first_key = mapkey;
-        }           
+        }
     }
-    
+
     private String createMapkeyDays(Calendar c){
         return DATE_FORMAT_DAYS.withLocale(Locale.ENGLISH).print(new DateTime(c.getTime().getTime()));
     }
@@ -895,7 +898,7 @@ public class ExcelOutputFormat extends AOutputFormat{
     private String createMapkeyMonths(Calendar c){
         return DATE_FORMAT_MONTHS.withLocale(Locale.ENGLISH).print(new DateTime(c.getTime().getTime()));
     }
-  
+
     private void generateStatistic() throws Exception {
         switch(ec.getGroupBy()){
             case Events: generatePerIndividualEvents(); break;
@@ -917,27 +920,27 @@ public class ExcelOutputFormat extends AOutputFormat{
         styles = new Styles(workbook);
         file = new File(filename);
         generateStatistic();
-        
+
         FileOutputStream fos = new FileOutputStream(file);
         workbook.write(fos);
         fos.close();
         return file;
     }
-    
+
     /* Generates statistics. */
     @Override
     public File createStatistic(List<ICalFile> ical_files, List<Keyword> keywords, ExportConfiguration ec) throws Exception {
         this.ec = ec;
         this.keywords = new ArrayList<>();
         // Occurrence is not important
-        for(Keyword k: keywords) 
+        for(Keyword k: keywords)
             this.keywords.add(k.getKeyword());
         data_t = new DataTransformer(ical_files);
         File file = null;
         file = generateFile();
         return file;
     }
-    
+
 }
 
 /***
@@ -945,9 +948,9 @@ public class ExcelOutputFormat extends AOutputFormat{
  * @author Tomas Krasny
  */
 class Styles{
-    
+
     private Workbook wb = null;
-    
+
     private CellStyle style_total_summary_row;
     private CellStyle style_total_summary_row_left_bold;
     private CellStyle style_date;
@@ -967,11 +970,11 @@ class Styles{
     private CellStyle style_summary_row_bold_odd;
     private boolean row_a = true;
     private int actual_row = 0;
-    
+
     public Styles(Workbook workbook){
         wb = workbook;
     }
-    
+
     public CellStyle getStyleSummaryRow(int row) {
         if(row != actual_row){
             row_a = !row_a;
@@ -989,7 +992,7 @@ class Styles{
             style_summary_row_even.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
             style_summary_row_even.setFillPattern(CellStyle.SOLID_FOREGROUND);
         }
-        return style_summary_row_even;        
+        return style_summary_row_even;
     }
     private CellStyle getStyleSummaryRowB(){
         if(style_summary_row_odd == null){
@@ -998,9 +1001,9 @@ class Styles{
             style_summary_row_odd.setFillForegroundColor(IndexedColors.GREY_50_PERCENT.getIndex());
             style_summary_row_odd.setFillPattern(CellStyle.SOLID_FOREGROUND);
         }
-        return style_summary_row_odd;        
-    }    
-    
+        return style_summary_row_odd;
+    }
+
     public CellStyle getStyleSummaryRowDate(int row){
         if(row != actual_row){
             row_a = !row_a;
@@ -1020,7 +1023,7 @@ class Styles{
             style_summary_row_date_even.setFillPattern(CellStyle.SOLID_FOREGROUND);
             style_summary_row_date_even.setDataFormat(ch.createDataFormat().getFormat("dd.MM.yyyy"));
         }
-        return style_summary_row_date_even;        
+        return style_summary_row_date_even;
     }
     private CellStyle getStyleSummaryRowDateB(){
         if(style_summary_row_date_odd == null){
@@ -1031,14 +1034,14 @@ class Styles{
             style_summary_row_date_odd.setFillPattern(CellStyle.SOLID_FOREGROUND);
             style_summary_row_date_odd.setDataFormat(ch.createDataFormat().getFormat("dd.MM.yyyy"));
         }
-        return style_summary_row_date_odd; 
+        return style_summary_row_date_odd;
     }
-        
+
     public CellStyle getStyleSummaryRowFirstKeyword(int row) {
         if(row != actual_row){
             row_a = !row_a;
             actual_row = row;
-        }        
+        }
         if(row_a)
             return getStyleSummaryRowFirstKeywordB();
         else
@@ -1051,9 +1054,9 @@ class Styles{
             style_first_keyword_summary_odd.setFillForegroundColor(IndexedColors.GREY_50_PERCENT.getIndex());
             style_first_keyword_summary_odd.setFillPattern(CellStyle.SOLID_FOREGROUND);
             style_first_keyword_summary_odd.setBorderLeft(CellStyle.BORDER_THICK);
-            style_first_keyword_summary_odd.setLeftBorderColor(IndexedColors.BLACK.index);            
+            style_first_keyword_summary_odd.setLeftBorderColor(IndexedColors.BLACK.index);
         }
-        return style_first_keyword_summary_odd;          
+        return style_first_keyword_summary_odd;
     }
     private CellStyle getStyleSummaryRowFirstKeywordB(){
         if(style_first_keyword_summary_even == null){
@@ -1062,11 +1065,11 @@ class Styles{
             style_first_keyword_summary_even.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
             style_first_keyword_summary_even.setFillPattern(CellStyle.SOLID_FOREGROUND);
             style_first_keyword_summary_even.setBorderLeft(CellStyle.BORDER_THICK);
-            style_first_keyword_summary_even.setLeftBorderColor(IndexedColors.BLACK.index);            
+            style_first_keyword_summary_even.setLeftBorderColor(IndexedColors.BLACK.index);
         }
-        return style_first_keyword_summary_even;        
+        return style_first_keyword_summary_even;
     }
-    
+
     public CellStyle getStyleSummaryRowBoldBorder(int row){
         if(row != actual_row){
             row_a = !row_a;
@@ -1084,13 +1087,13 @@ class Styles{
             f.setBoldweight(Font.BOLDWEIGHT_BOLD);
             style_summary_row_bold_even.setFont(f);
             style_summary_row_bold_even.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
-            style_summary_row_bold_even.setFillPattern(CellStyle.SOLID_FOREGROUND);            
+            style_summary_row_bold_even.setFillPattern(CellStyle.SOLID_FOREGROUND);
             style_summary_row_bold_even.setBorderTop(CellStyle.BORDER_THIN);
             style_summary_row_bold_even.setBorderLeft(CellStyle.BORDER_THIN);
             style_summary_row_bold_even.setBorderRight(CellStyle.BORDER_THIN);
             style_summary_row_bold_even.setBorderBottom(CellStyle.BORDER_THIN);
         }
-        return style_summary_row_bold_even;        
+        return style_summary_row_bold_even;
     }
     private CellStyle getStyleSummaryRowBoldBorderB(){
         if(style_summary_row_bold_odd == null){
@@ -1099,24 +1102,24 @@ class Styles{
             f.setBoldweight(Font.BOLDWEIGHT_BOLD);
             style_summary_row_bold_odd.setFont(f);
             style_summary_row_bold_odd.setFillForegroundColor(IndexedColors.GREY_50_PERCENT.getIndex());
-            style_summary_row_bold_odd.setFillPattern(CellStyle.SOLID_FOREGROUND);            
+            style_summary_row_bold_odd.setFillPattern(CellStyle.SOLID_FOREGROUND);
             style_summary_row_bold_odd.setBorderTop(CellStyle.BORDER_THIN);
             style_summary_row_bold_odd.setBorderLeft(CellStyle.BORDER_THIN);
             style_summary_row_bold_odd.setBorderRight(CellStyle.BORDER_THIN);
             style_summary_row_bold_odd.setBorderBottom(CellStyle.BORDER_THIN);
         }
-        return style_summary_row_bold_odd;          
-    }    
-    
+        return style_summary_row_bold_odd;
+    }
+
     public CellStyle getStyleFirstKeyword() {
        if(style_first_keyword == null){
             style_first_keyword = wb.createCellStyle();
             style_first_keyword.setBorderLeft(CellStyle.BORDER_THICK);
-            style_first_keyword.setLeftBorderColor(IndexedColors.BLACK.index);          
+            style_first_keyword.setLeftBorderColor(IndexedColors.BLACK.index);
         }
         return style_first_keyword;
     }
-    
+
     public CellStyle getStyleDate(){
         if(style_date == null){
             style_date = wb.createCellStyle();
@@ -1125,7 +1128,7 @@ class Styles{
         }
         return style_date;
     }
-    
+
     public CellStyle getStyleTimeRightAlign(){
         if(style_time_right_align == null){
             style_time_right_align = wb.createCellStyle();
@@ -1133,7 +1136,7 @@ class Styles{
         }
         return style_time_right_align;
     }
-    
+
     public CellStyle getStyleHeader(){
         if(style_header == null){
             style_header = wb.createCellStyle();
@@ -1161,7 +1164,7 @@ class Styles{
         }
         return style_header;
     }
-    
+
     public CellStyle getStyleHeaderKeyword(){
         if(style_header_header == null){
             style_header_header = wb.createCellStyle();
@@ -1185,7 +1188,7 @@ class Styles{
         }
         return style_header_header;
     }
-    
+
     public CellStyle getStyleHeaderFirstKeyword(){
         if(style_header_first_keyword == null){
             style_header_first_keyword = wb.createCellStyle();
@@ -1209,7 +1212,7 @@ class Styles{
         }
         return style_header_first_keyword;
     }
-    
+
     public CellStyle getStyleHeaderLeftBold(){
         if(style_header_left_bold == null){
             style_header_left_bold = wb.createCellStyle();
@@ -1254,7 +1257,7 @@ class Styles{
             style_total_summary_row_left_bold.setLeftBorderColor(IndexedColors.BLACK.getIndex());
             style_total_summary_row_left_bold.setBorderBottom(CellStyle.BORDER_THIN);
             style_total_summary_row_left_bold.setBorderLeft(CellStyle.BORDER_THICK);
-            style_total_summary_row_left_bold.setBorderTop(CellStyle.BORDER_THIN);          
+            style_total_summary_row_left_bold.setBorderTop(CellStyle.BORDER_THIN);
         }
         return style_total_summary_row_left_bold;
     }
@@ -1273,7 +1276,7 @@ class Styles{
             style_total_summary_row.setTopBorderColor(IndexedColors.GREY_50_PERCENT.getIndex());
             style_total_summary_row.setBottomBorderColor(IndexedColors.GREY_50_PERCENT.getIndex());
             style_total_summary_row.setBorderBottom(CellStyle.BORDER_THIN);
-            style_total_summary_row.setBorderTop(CellStyle.BORDER_THIN);          
+            style_total_summary_row.setBorderTop(CellStyle.BORDER_THIN);
         }
         return style_total_summary_row;
     }

@@ -2,6 +2,7 @@ package cz.krasny.icalstats.data.classes.output;
 
 import cz.krasny.icalstats.data.classes.ICalFile;
 import cz.krasny.icalstats.data.classes.Keyword;
+import cz.krasny.icalstats.data.classes.output.ExportConfiguration;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;

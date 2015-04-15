@@ -1,9 +1,9 @@
 package cz.krasny.icalstats.data.classes.output.formats;
 
-import cz.krasny.icalstats.data.classes.output.ExportConfiguration;
 import cz.krasny.icalstats.data.classes.ICalFile;
 import cz.krasny.icalstats.data.classes.Keyword;
 import cz.krasny.icalstats.data.classes.output.AOutputFormat;
+import cz.krasny.icalstats.data.classes.output.ExportConfiguration;
 import cz.krasny.icalstats.data.classes.output.OutputFormat;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -16,7 +16,7 @@ import java.util.List;
  * @author Tomas Krasny
  */
 public class HTMLOutputFormat extends AOutputFormat{
-    
+
     /* This method generates XLS statistics and then convert them into HTML format. */
     private File generateFile(List<ICalFile> ical_files, List<Keyword> keywords, ExportConfiguration ec) throws Exception{
         File file_html = null;
@@ -28,11 +28,11 @@ public class HTMLOutputFormat extends AOutputFormat{
         file_xlsx = xls_statistics.createStatistic(ical_files, keywords, ec);
         ToHtml t = ToHtml.create(new FileInputStream(file_xlsx), new BufferedWriter(new FileWriter(file_html)));
         t.setCompleteHTML(true);
-        
+
         t.printPage();
         return file_html;
     }
-    
+
     /* Generates statistics. */
     @Override
     public File createStatistic(List<ICalFile> ical_files, List<Keyword> keywords, ExportConfiguration ec) throws Exception {

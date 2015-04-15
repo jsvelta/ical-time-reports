@@ -14,7 +14,7 @@
                 <div class="form-group">
                     <h:outputLabel value="Calendar" for="calendar" class="col-sm-2" />
                     <div class="col-sm-10">
-                        <h:selectOneListbox id="calendar"
+                        <h:selectOneMenu id="calendar"
                                             value="#{keywordController.gatheringSettings.calendarId}"
                                             class="form-control"
                                             required="true">
@@ -22,7 +22,7 @@
                                            var="calendar"
                                            itemValue="#{calendar.id}"
                                            itemLabel="#{calendar.name}"/>
-                        </h:selectOneListbox>
+                        </h:selectOneMenu>
                     </div>
                     <div class="col-sm-offset-2 col-sm-10">
                         <h:message for="calendar" class="help-block"

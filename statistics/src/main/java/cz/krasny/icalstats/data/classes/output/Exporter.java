@@ -2,9 +2,9 @@ package cz.krasny.icalstats.data.classes.output;
 
 import cz.krasny.icalstats.data.classes.ICalFile;
 import cz.krasny.icalstats.data.classes.Keyword;
-import cz.krasny.icalstats.data.classes.output.formats.HTMLOutputFormat;
 import cz.krasny.icalstats.data.classes.output.formats.ExcelOutputFormat;
-import java.io.File; 
+import cz.krasny.icalstats.data.classes.output.formats.HTMLOutputFormat;
+import java.io.File;
 import java.util.List;
 import java.util.zip.DataFormatException;
 
@@ -13,7 +13,7 @@ import java.util.zip.DataFormatException;
  * @author Tomas Krasny
  */
 public class Exporter {
-    
+
     /* Method for generating statistics. */
     public File export(List<ICalFile> ical_files, List<Keyword> keywords, ExportConfiguration export_configuration) throws Exception{
         AOutputFormat output = null;
@@ -23,13 +23,13 @@ public class Exporter {
             case XLS: output = new ExcelOutputFormat(); break;
             case XLSX: output = new ExcelOutputFormat(); break;
             default: throw new IllegalArgumentException("Unknow output format.");
-        }  
-        
+        }
+
         File file = output.createStatistic(ical_files, keywords, export_configuration);
-        
+
         return file;
     }
-    
+
     /* Checks if the export configuration is set correctly. */
     private void checkExportConfiguration(List<ICalFile> ical_files, List<Keyword> keywords, ExportConfiguration ec) throws DataFormatException{
         if(ec.getOutputFormat() == null)

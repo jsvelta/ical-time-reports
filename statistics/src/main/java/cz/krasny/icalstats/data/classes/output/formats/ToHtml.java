@@ -7,31 +7,56 @@
 package cz.krasny.icalstats.data.classes.output.formats;
 
 
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFFont;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.format.CellFormat;
-import org.apache.poi.ss.format.CellFormatResult;
-import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
 import java.io.BufferedReader;
 import java.io.Closeable;
 import java.io.FileInputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.util.Formatter;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-
-import static org.apache.poi.ss.usermodel.CellStyle.*;
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFFont;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.format.CellFormat;
+import org.apache.poi.ss.format.CellFormatResult;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import static org.apache.poi.ss.usermodel.CellStyle.ALIGN_CENTER;
+import static org.apache.poi.ss.usermodel.CellStyle.ALIGN_CENTER_SELECTION;
+import static org.apache.poi.ss.usermodel.CellStyle.ALIGN_FILL;
+import static org.apache.poi.ss.usermodel.CellStyle.ALIGN_GENERAL;
+import static org.apache.poi.ss.usermodel.CellStyle.ALIGN_JUSTIFY;
+import static org.apache.poi.ss.usermodel.CellStyle.ALIGN_LEFT;
+import static org.apache.poi.ss.usermodel.CellStyle.ALIGN_RIGHT;
+import static org.apache.poi.ss.usermodel.CellStyle.BORDER_DASHED;
+import static org.apache.poi.ss.usermodel.CellStyle.BORDER_DASH_DOT;
+import static org.apache.poi.ss.usermodel.CellStyle.BORDER_DASH_DOT_DOT;
+import static org.apache.poi.ss.usermodel.CellStyle.BORDER_DOTTED;
+import static org.apache.poi.ss.usermodel.CellStyle.BORDER_DOUBLE;
+import static org.apache.poi.ss.usermodel.CellStyle.BORDER_HAIR;
+import static org.apache.poi.ss.usermodel.CellStyle.BORDER_MEDIUM;
+import static org.apache.poi.ss.usermodel.CellStyle.BORDER_MEDIUM_DASHED;
+import static org.apache.poi.ss.usermodel.CellStyle.BORDER_MEDIUM_DASH_DOT;
+import static org.apache.poi.ss.usermodel.CellStyle.BORDER_MEDIUM_DASH_DOT_DOT;
+import static org.apache.poi.ss.usermodel.CellStyle.BORDER_NONE;
+import static org.apache.poi.ss.usermodel.CellStyle.BORDER_SLANTED_DASH_DOT;
+import static org.apache.poi.ss.usermodel.CellStyle.BORDER_THICK;
+import static org.apache.poi.ss.usermodel.CellStyle.BORDER_THIN;
+import static org.apache.poi.ss.usermodel.CellStyle.VERTICAL_BOTTOM;
+import static org.apache.poi.ss.usermodel.CellStyle.VERTICAL_CENTER;
+import static org.apache.poi.ss.usermodel.CellStyle.VERTICAL_TOP;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  * This example shows how to display a spreadsheet in HTML using the classes for

@@ -7,7 +7,7 @@ import cz.krasny.icalstats.data.classes.DateRange;
  * @author Tomas Krasny
  */
 public class ExportConfiguration {
-    
+
     private boolean include_days_of_week = false;
     private boolean include_event_dates = false;
     private boolean include_empty_rows = false;
@@ -37,7 +37,7 @@ public class ExportConfiguration {
     public boolean isIncludeEmptyRows() {
         return include_empty_rows;
     }
-    
+
     public boolean isIncludeEventDayOfWeek() {
         return include_days_of_week;
     }
@@ -48,8 +48,8 @@ public class ExportConfiguration {
 
     public boolean isIncludeEventFromTo() {
         return include_from_to;
-    }    
-    
+    }
+
     public void setCaseSensitive(boolean case_sensitive) {
         this.case_sensitive = case_sensitive;
     }
@@ -57,19 +57,19 @@ public class ExportConfiguration {
     public void setRemoveDiacritics(boolean remove_diacritics) {
         this.remove_diacritics = remove_diacritics;
     }
-    
+
     public void setIncludeEventDate(boolean include_event_dates) {
         this.include_event_dates = include_event_dates;
     }
-    
+
     public void setIncludeEmptyRows(boolean include_empty_rows) {
         this.include_empty_rows = include_empty_rows;
     }
-    
+
     public void setIncludeEventDayOfWeek(boolean include_days) {
         this.include_days_of_week = include_days;
     }
-    
+
     public void setIncludeEvents(boolean include_events) {
         this.include_events = include_events;
     }
@@ -77,23 +77,23 @@ public class ExportConfiguration {
     public void setIncludeEventFromTo(boolean include_from_to) {
         this.include_from_to = include_from_to;
     }
-    
+
     public void setGroupBy(GroupBy groupBy) {
         this.group_by = groupBy;
     }
-    
+
     public void setDateRange(DateRange date_range) {
         this.date_range = date_range;
-    }    
-    
+    }
+
     public void setOutputFormat(OutputFormat output_format) {
         this.output_format = output_format;
-    }    
-    
+    }
+
     public void setUnit(Units unit) {
         this.unit = unit;
     }
-    
+
     public Units getUnit() {
         return unit;
     }
@@ -101,11 +101,11 @@ public class ExportConfiguration {
     public GroupBy getGroupBy() {
         return group_by;
     }
-    
+
     public OutputFormat getOutputFormat() {
         return output_format;
     }
-    
+
     public DateRange getDateRange() {
         return date_range;
     }
