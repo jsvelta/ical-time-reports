@@ -2,6 +2,7 @@ package sk.svelta.icaltimereports.entity;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -43,6 +44,9 @@ public class User implements Serializable {
     @Basic(optional = false)
     @Size(min = 5, max = 100)
     private String password;
+
+    @Column(name = "USERROLE")
+    private String role;
 
     public User() {
     }
@@ -136,6 +140,14 @@ public class User implements Serializable {
      */
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     @Override

@@ -10,7 +10,6 @@ import javax.inject.Named;
 import sk.svelta.icaltimereports.ejb.UserFacade;
 import sk.svelta.icaltimereports.entity.User;
 import sk.svelta.icaltimereports.web.util.JsfUtil;
-import sk.svelta.icaltimereports.web.util.MD5Util;
 import sk.svelta.icaltimereports.web.util.PageNavigation;
 
 /**
@@ -140,7 +139,7 @@ public class UserController implements Serializable {
         String result = null;
         try {
             if (!isUserDuplicated(selected)) {
-                selected.setPassword(MD5Util.generateHash(selected.getPassword()));
+                //selected.setPassword(MD5Util.generateHash(selected.getPassword()));
                 getFacade().create(selected);
                 JsfUtil.addSuccessMessage("Customer was successfully created.");
                 recreateModel();

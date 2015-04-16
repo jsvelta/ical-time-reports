@@ -16,6 +16,36 @@
 
     <build>
         <finalName>${project.groupId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>create-realm</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <executable>${glassfish.asadmin}</executable>
+                    <arguments>
+                        <argument>create-auth-realm</argument>
+                        <argument>--classname</argument>
+                        <argument>com.sun.enterprise.security.auth.realm.jdbc.JDBCRealm</argument>
+                        <argument>--property</argument>
+                        <argument>jaas-context=jdbcRealm:datasource-jndi='java:global/jcaltimereportsDataSource':user-table=icaltimereports.PERSON:user-name-column=username:password-column=password:group-table=icaltimereports.PERSON:group-name-column=userrole:digest-algorithm=none</argument>
+                        <argument>jcaltimereportsRealm</argument>
+                    </arguments>
+                    <successCodes>
+                        <successCode>0</successCode>
+                        <successCode>1</successCode>
+                    </successCodes>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 
     <dependencies>

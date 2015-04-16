@@ -18,12 +18,43 @@
         <maven.compiler.plugin.version>3.2</maven.compiler.plugin.version>
         <maven.war.plugin.version>2.6</maven.war.plugin.version>
         <maven.clean.plugin.version>2.6.1</maven.clean.plugin.version>
+        <maven.exec.plugin.version>1.3.2</maven.exec.plugin.version>
 
         <poi-ooxml.version>3.11</poi-ooxml.version>
         <commons-io.version>1.4</commons-io.version>
         <joda-time.version>2.7</joda-time.version>
         <jcalendar.version>1.4</jcalendar.version>
+
+        <glassfish.home>${glassfish.home.prefix}/glassfish4</glassfish.home>
+        <glassfish.asadmin>${glassfish.home}/bin/asadmin${glassfish.executables.suffix}</glassfish.asadmin>
     </properties>
+
+    <profiles>
+        <profile>
+            <id>windows</id>
+            <activation>
+                <os>
+                    <family>windows</family>
+                </os>
+            </activation>
+            <properties>
+                <glassfish.home.prefix>c:/</glassfish.home.prefix>
+                <glassfish.executables.suffix>.bat</glassfish.executables.suffix>
+            </properties>
+        </profile>
+        <profile>
+            <id>unix</id>
+            <activation>
+                <os>
+                    <family>unix</family>
+                </os>
+            </activation>
+            <properties>
+                <glassfish.home.prefix>${user.home}</glassfish.home.prefix>
+                <glassfish.executables.suffix />
+            </properties>
+        </profile>
+    </profiles>
 
     <repositories>
         <repository>
@@ -63,13 +94,17 @@
                     <artifactId>maven-clean-plugin</artifactId>
                     <version>${maven.clean.plugin.version}</version>
                 </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>exec-maven-plugin</artifactId>
+                    <version>${maven.exec.plugin.version}</version>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven.compiler.plugin.version}</version>
                 <configuration>
                     <source>1.7</source>
                     <target>1.7</target>
