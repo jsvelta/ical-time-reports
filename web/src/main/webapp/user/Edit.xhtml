@@ -6,57 +6,50 @@
     <ui:define name="title">Edit Customer</ui:define>
 
     <ui:define name="body">
-        <div class="row">
-            <br />
-            <h:form class="form-horizontal">
-                <fieldset>
-                    <legend>Edit User</legend>
-                    <div class="form-group">
-                        <h:outputLabel class="col-sm-2" for="firstname" value="First Name:" />
-                        <div class="col-sm-10">
-                            <h:inputText id="firstname" value="#{userController.selected.firstname}" class="form-control" />
-                        </div>
-                        <div class="col-sm-10 col-sm-offset-2">
-                            <h:message for="firstname" class="help-block" errorClass="text-danger"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <h:outputLabel class="col-sm-2" for="lastname" value="Last Name: " />
-                        <div class="col-sm-10">
-                            <h:inputText id="lastname" value="#{userController.selected.lastname}" class="form-control" />
-                        </div>
-                        <div class="col-sm-10 col-sm-offset-2">
-                            <h:message for="lastname" class="help-block" errorClass="text-danger"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <h:outputLabel class="col-sm-2" for="username" value="Username:" />
-                        <div class="col-sm-10">
-                            <h:inputText id="username" value="#{userController.selected.username}" class="form-control" />
-                        </div>
-                        <div class="col-sm-10 col-sm-offset-2">
-                            <h:message for="username" class="help-block" errorClass="text-danger"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <h:outputLabel class="col-sm-2" for="password" value="Password:" />
-                        <div class="col-sm-10">
-                            <h:inputSecret id="password" value="#{userController.selected.password}" class="form-control" />
-                        </div>
-                        <div class="col-sm-10 col-sm-offset-2">
-                            <h:message for="password" class="help-block" errorClass="text-danger"/>
-                        </div>
-                    </div>
-                </fieldset>
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <h:commandButton class="btn btn-primary" value="Save" action="#{userController.create}" />
-                        &#xA0;
-                        <h:commandButton class="btn btn-default" value="Cancel" action="/index.xhtml" immediate="true" />
-                    </div>
+        <h1>Edit User</h1>
+        <h:form class="form-horizontal">
+            <div class="form-group">
+                <h:outputLabel class="col-sm-2" for="firstname" value="First Name" />
+                <div class="col-sm-10">
+                    <h:inputText id="firstname" value="#{userController.selected.firstname}" class="form-control" />
                 </div>
-            </h:form>
-        </div>
+                <div class="col-sm-10 col-sm-offset-2">
+                    <h:message for="firstname" class="help-block" errorClass="text-danger"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <h:outputLabel class="col-sm-2" for="lastname" value="Last Name" />
+                <div class="col-sm-10">
+                    <h:inputText id="lastname" value="#{userController.selected.lastname}" class="form-control" />
+                </div>
+                <div class="col-sm-10 col-sm-offset-2">
+                    <h:message for="lastname" class="help-block" errorClass="text-danger"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <h:outputLabel class="col-sm-2" for="username" value="Username" />
+                <div class="col-sm-10">
+                    <h:inputText id="username" value="#{userController.selected.username}" class="form-control" />
+                </div>
+                <div class="col-sm-10 col-sm-offset-2">
+                    <h:message for="username" class="help-block" errorClass="text-danger"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <h:outputLabel class="col-sm-2" for="password" value="Password" />
+                <div class="col-sm-10">
+                    <h:inputSecret id="password" value="#{userController.selected.password}" class="form-control" />
+                </div>
+                <div class="col-sm-10 col-sm-offset-2">
+                    <h:message for="password" class="help-block" errorClass="text-danger"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <h:commandButton class="btn btn-primary" value="Save" action="#{userController.create}" />
+                </div>
+            </div>
+        </h:form>
     </ui:define>
 
 </ui:composition>

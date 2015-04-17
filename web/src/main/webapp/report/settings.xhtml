@@ -8,186 +8,188 @@
     <ui:define name="title">Report Settings</ui:define>
 
     <ui:define name="body">
+        <h1>Report Settings</h1>
         <h:form class="form-horizontal" enctype="multipart/form-data" id="gatheringSettings">
-            <fieldset>
-                <legend>Report Settings</legend>
-                <div class="form-group">
-                    <h:outputLabel value="Group by" for="groupBy" class="col-sm-2" />
-                    <div class="col-sm-10">
-                        <h:selectOneMenu id="groupBy"
-                                         value="#{reportController.settings.groupBy}"
-                                         class="form-control"
-                                         required="true">
-                            <f:selectItems value="#{reportController.selectOneGroupBy}"/>
-                        </h:selectOneMenu>
-                    </div>
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <h:message for="groupBy" class="help-block"
-                                   errorClass="text-danger"/>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <h:outputLabel value="Units" for="units" class="col-sm-2" />
-                    <div class="col-sm-10">
-                        <h:selectOneMenu id="units"
-                                         value="#{reportController.settings.units}"
-                                         class="form-control"
-                                         required="true">
-                            <f:selectItems value="#{reportController.selectOneUnits}" />
-                        </h:selectOneMenu>
-                    </div>
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <h:message for="units" class="help-block"
-                                   errorClass="text-danger"/>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <div class="checkbox">
-                            <h:outputLabel>
-                                <h:selectBooleanCheckbox id="wholeCalendar"
-                                                         value="#{reportController.settings.wholeCalendar}">
-                                    <f:ajax render="@all" />
-                                </h:selectBooleanCheckbox>
-                                <h:outputText value=" Whole Calendar" />
-                            </h:outputLabel>
-                        </div>
-                    </div>
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <h:message for="wholeCalendar" class="help-block"
-                                   errorClass="text-danger"/>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <h:outputLabel value="Date from" for="startDate" class="col-sm-2" />
-                    <div class="col-sm-10">
-                        <h:inputText id="startDate"
-                                     value="#{reportController.settings.startDate}"
+            <div class="form-group">
+                <h:outputLabel value="Group by" for="groupBy" class="col-sm-2" />
+                <div class="col-sm-10">
+                    <h:selectOneMenu id="groupBy"
+                                     value="#{reportController.settings.groupBy}"
                                      class="form-control"
-                                     disabled="#{reportController.settings.wholeCalendar}"
-                                     required="#{!reportController.settings.wholeCalendar}">
-                            <f:convertDateTime />
-                        </h:inputText>
-                    </div>
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <h:message for="startDate" class="help-block"
-                                   errorClass="text-danger"/>
-                    </div>
+                                     required="true">
+                        <f:selectItems value="#{reportController.selectOneGroupBy}"/>
+                    </h:selectOneMenu>
                 </div>
+                <div class="col-sm-offset-2 col-sm-10">
+                    <h:message for="groupBy" class="help-block"
+                               errorClass="text-danger"/>
+                </div>
+            </div>
 
-                <div class="form-group">
-                    <h:outputLabel value="Date to" for="endDate" class="col-sm-2" />
-                    <div class="col-sm-10">
-                        <h:inputText id="endDate"
-                                     value="#{reportController.settings.endDate}"
+            <div class="form-group">
+                <h:outputLabel value="Units" for="units" class="col-sm-2" />
+                <div class="col-sm-10">
+                    <h:selectOneMenu id="units"
+                                     value="#{reportController.settings.units}"
                                      class="form-control"
-                                     disabled="#{reportController.settings.wholeCalendar}"
-                                     required="#{!reportController.settings.wholeCalendar}">
-                            <f:convertDateTime />
-                        </h:inputText>
-                    </div>
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <h:message for="endDate" class="help-block"
-                                   errorClass="text-danger"/>
+                                     required="true">
+                        <f:selectItems value="#{reportController.selectOneUnits}" />
+                    </h:selectOneMenu>
+                </div>
+                <div class="col-sm-offset-2 col-sm-10">
+                    <h:message for="units" class="help-block"
+                               errorClass="text-danger"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <div class="checkbox">
+                        <h:outputLabel>
+                            <h:selectBooleanCheckbox id="wholeCalendar"
+                                                     value="#{reportController.settings.wholeCalendar}">
+                                <f:ajax render="@all" />
+                            </h:selectBooleanCheckbox>
+                            <h:outputText value=" Whole Calendar" />
+                        </h:outputLabel>
                     </div>
                 </div>
+                <div class="col-sm-offset-2 col-sm-10">
+                    <h:message for="wholeCalendar" class="help-block"
+                               errorClass="text-danger"/>
+                </div>
+            </div>
 
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <div class="checkbox">
-                            <h:outputLabel>
-                                <h:selectBooleanCheckbox id="eventsIncluded"
-                                                         value="#{reportController.settings.eventsIncluded}">
-                                    <f:ajax render="@all" />
-                                </h:selectBooleanCheckbox>
-                                <h:outputText value=" Include Events" />
-                            </h:outputLabel>
-                        </div>
-                    </div>
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <h:message for="eventsIncluded" class="help-block"
-                                   errorClass="text-danger"/>
+            <div class="form-group">
+                <h:outputLabel value="Date from" for="startDate" class="col-sm-2" />
+                <div class="col-sm-10">
+                    <h:inputText id="startDate"
+                                 value="#{reportController.settings.startDate}"
+                                 class="form-control"
+                                 disabled="#{reportController.settings.wholeCalendar}"
+                                 required="#{!reportController.settings.wholeCalendar}">
+                        <f:convertDateTime />
+                    </h:inputText>
+                </div>
+                <div class="col-sm-offset-2 col-sm-10">
+                    <h:message for="startDate" class="help-block"
+                               errorClass="text-danger"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h:outputLabel value="Date to" for="endDate" class="col-sm-2" />
+                <div class="col-sm-10">
+                    <h:inputText id="endDate"
+                                 value="#{reportController.settings.endDate}"
+                                 class="form-control"
+                                 disabled="#{reportController.settings.wholeCalendar}"
+                                 required="#{!reportController.settings.wholeCalendar}">
+                        <f:convertDateTime />
+                    </h:inputText>
+                </div>
+                <div class="col-sm-offset-2 col-sm-10">
+                    <h:message for="endDate" class="help-block"
+                               errorClass="text-danger"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <div class="checkbox">
+                        <h:outputLabel>
+                            <h:selectBooleanCheckbox id="eventsIncluded"
+                                                     value="#{reportController.settings.eventsIncluded}">
+                                <f:ajax render="@all" />
+                            </h:selectBooleanCheckbox>
+                            <h:outputText value=" Include Events" />
+                        </h:outputLabel>
                     </div>
                 </div>
+                <div class="col-sm-offset-2 col-sm-10">
+                    <h:message for="eventsIncluded" class="help-block"
+                               errorClass="text-danger"/>
+                </div>
+            </div>
 
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <div class="checkbox">
-                            <h:outputLabel>
-                                <h:selectBooleanCheckbox id="datesIncluded"
-                                                         value="#{reportController.settings.datesIncluded}"
-                                                         disabled="#{!reportController.settings.eventsIncluded}">
-                                </h:selectBooleanCheckbox>
-                                <h:outputText value=" Include Dates" />
-                            </h:outputLabel>
-                        </div>
-                    </div>
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <h:message for="datesIncluded" class="help-block"
-                                   errorClass="text-danger"/>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <div class="checkbox">
+                        <h:outputLabel>
+                            <h:selectBooleanCheckbox id="datesIncluded"
+                                                     value="#{reportController.settings.datesIncluded}"
+                                                     disabled="#{!reportController.settings.eventsIncluded}">
+                            </h:selectBooleanCheckbox>
+                            <h:outputText value=" Include Dates" />
+                        </h:outputLabel>
                     </div>
                 </div>
+                <div class="col-sm-offset-2 col-sm-10">
+                    <h:message for="datesIncluded" class="help-block"
+                               errorClass="text-danger"/>
+                </div>
+            </div>
 
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <div class="checkbox">
-                            <h:outputLabel>
-                                <h:selectBooleanCheckbox id="dayNamesIncluded"
-                                                         value="#{reportController.settings.dayNamesIncluded}"
-                                                         disabled="#{!reportController.settings.eventsIncluded}">
-                                </h:selectBooleanCheckbox>
-                                <h:outputText value=" Include Day of Week Names" />
-                            </h:outputLabel>
-                        </div>
-                    </div>
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <h:message for="dayNamesIncluded" class="help-block"
-                                   errorClass="text-danger"/>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <div class="checkbox">
+                        <h:outputLabel>
+                            <h:selectBooleanCheckbox id="dayNamesIncluded"
+                                                     value="#{reportController.settings.dayNamesIncluded}"
+                                                     disabled="#{!reportController.settings.eventsIncluded}">
+                            </h:selectBooleanCheckbox>
+                            <h:outputText value=" Include Day of Week Names" />
+                        </h:outputLabel>
                     </div>
                 </div>
+                <div class="col-sm-offset-2 col-sm-10">
+                    <h:message for="dayNamesIncluded" class="help-block"
+                               errorClass="text-danger"/>
+                </div>
+            </div>
 
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <div class="checkbox">
-                            <h:outputLabel>
-                                <h:selectBooleanCheckbox id="intervalIncluded"
-                                                         value="#{reportController.settings.intervalIncluded}"
-                                                         disabled="#{!reportController.settings.eventsIncluded}">
-                                </h:selectBooleanCheckbox>
-                                <h:outputText value=" Include from-to" />
-                            </h:outputLabel>
-                        </div>
-                    </div>
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <h:message for="intervalIncluded" class="help-block"
-                                   errorClass="text-danger"/>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <div class="checkbox">
+                        <h:outputLabel>
+                            <h:selectBooleanCheckbox id="intervalIncluded"
+                                                     value="#{reportController.settings.intervalIncluded}"
+                                                     disabled="#{!reportController.settings.eventsIncluded}">
+                            </h:selectBooleanCheckbox>
+                            <h:outputText value=" Include from-to" />
+                        </h:outputLabel>
                     </div>
                 </div>
+                <div class="col-sm-offset-2 col-sm-10">
+                    <h:message for="intervalIncluded" class="help-block"
+                               errorClass="text-danger"/>
+                </div>
+            </div>
 
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <div class="checkbox">
-                            <h:outputLabel>
-                                <h:selectBooleanCheckbox id="emptyRowsIncluded"
-                                                         value="#{reportController.settings.emptyRowsIncluded}">
-                                </h:selectBooleanCheckbox>
-                                <h:outputText value=" Include Empty Rows" />
-                            </h:outputLabel>
-                        </div>
-                    </div>
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <h:message for="emptyRowsIncluded" class="help-block"
-                                   errorClass="text-danger"/>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <div class="checkbox">
+                        <h:outputLabel>
+                            <h:selectBooleanCheckbox id="emptyRowsIncluded"
+                                                     value="#{reportController.settings.emptyRowsIncluded}">
+                            </h:selectBooleanCheckbox>
+                            <h:outputText value=" Include Empty Rows" />
+                        </h:outputLabel>
                     </div>
                 </div>
+                <div class="col-sm-offset-2 col-sm-10">
+                    <h:message for="emptyRowsIncluded" class="help-block"
+                               errorClass="text-danger"/>
+                </div>
+            </div>
 
-            </fieldset>
-            <h:commandButton value="Generate Report"
-                             action="#{reportController.generate()}"
-                             class="btn btn-primary"/>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <h:commandButton value="Generate Report"
+                                     action="#{reportController.generate()}"
+                                     class="btn btn-primary"/>
+                </div>
+            </div>
         </h:form>
     </ui:define>
 

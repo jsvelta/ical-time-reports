@@ -8,134 +8,136 @@
     <ui:define name="title">Gather Keywords from Calendar</ui:define>
 
     <ui:define name="body">
+        <h1>Gather Keywords from Calendar</h1>
         <h:form class="form-horizontal" enctype="multipart/form-data" id="gatheringSettings">
-            <fieldset>
-                <legend>Gather Keywords from Calendar</legend>
-                <div class="form-group">
-                    <h:outputLabel value="Calendar" for="calendar" class="col-sm-2" />
-                    <div class="col-sm-10">
-                        <h:selectOneMenu id="calendar"
-                                            value="#{keywordController.gatheringSettings.calendarId}"
-                                            class="form-control"
-                                            required="true">
-                            <f:selectItems value="#{keywordController.selectOneCalendars}"
-                                           var="calendar"
-                                           itemValue="#{calendar.id}"
-                                           itemLabel="#{calendar.name}"/>
-                        </h:selectOneMenu>
-                    </div>
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <h:message for="calendar" class="help-block"
-                                   errorClass="text-danger"/>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <div class="checkbox">
-                            <h:outputLabel>
-                                <h:selectBooleanCheckbox id="wholeCalendar"
-                                                         value="#{keywordController.gatheringSettings.wholeCalendar}">
-                                    <f:ajax render="@all" />
-                                </h:selectBooleanCheckbox>
-                                <h:outputText value=" Whole Calendar" />
-                            </h:outputLabel>
-                        </div>
-                    </div>
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <h:message for="wholeCalendar" class="help-block"
-                                   errorClass="text-danger"/>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <h:outputLabel value="Date from" for="startDate" class="col-sm-2" />
-                    <div class="col-sm-10">
-                        <h:inputText id="startDate"
-                                     value="#{keywordController.gatheringSettings.startDate}"
+            <div class="form-group">
+                <h:outputLabel value="Calendar" for="calendar" class="col-sm-2" />
+                <div class="col-sm-10">
+                    <h:selectOneMenu id="calendar"
+                                     value="#{keywordController.gatheringSettings.calendarId}"
                                      class="form-control"
-                                     disabled="#{keywordController.gatheringSettings.wholeCalendar}"
-                                     required="#{!keywordController.gatheringSettings.wholeCalendar}">
-                            <f:convertDateTime />
-                        </h:inputText>
-                    </div>
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <h:message for="startDate" class="help-block"
-                                   errorClass="text-danger"/>
+                                     required="true">
+                        <f:selectItems value="#{keywordController.selectOneCalendars}"
+                                       var="calendar"
+                                       itemValue="#{calendar.id}"
+                                       itemLabel="#{calendar.name}"/>
+                    </h:selectOneMenu>
+                </div>
+                <div class="col-sm-offset-2 col-sm-10">
+                    <h:message for="calendar" class="help-block"
+                               errorClass="text-danger"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <div class="checkbox">
+                        <h:outputLabel>
+                            <h:selectBooleanCheckbox id="wholeCalendar"
+                                                     value="#{keywordController.gatheringSettings.wholeCalendar}">
+                                <f:ajax render="@all" />
+                            </h:selectBooleanCheckbox>
+                            <h:outputText value=" Whole Calendar" />
+                        </h:outputLabel>
                     </div>
                 </div>
-                <div class="form-group">
-                    <h:outputLabel value="Date to" for="endDate" class="col-sm-2" />
-                    <div class="col-sm-10">
-                        <h:inputText id="endDate"
-                                     value="#{keywordController.gatheringSettings.endDate}"
-                                     class="form-control"
-                                     disabled="#{keywordController.gatheringSettings.wholeCalendar}"
-                                     required="#{!keywordController.gatheringSettings.wholeCalendar}">
-                            <f:convertDateTime />
-                        </h:inputText>
-                    </div>
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <h:message for="endDate" class="help-block"
-                                   errorClass="text-danger"/>
+                <div class="col-sm-offset-2 col-sm-10">
+                    <h:message for="wholeCalendar" class="help-block"
+                               errorClass="text-danger"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <h:outputLabel value="Date from" for="startDate" class="col-sm-2" />
+                <div class="col-sm-10">
+                    <h:inputText id="startDate"
+                                 value="#{keywordController.gatheringSettings.startDate}"
+                                 class="form-control"
+                                 disabled="#{keywordController.gatheringSettings.wholeCalendar}"
+                                 required="#{!keywordController.gatheringSettings.wholeCalendar}">
+                        <f:convertDateTime />
+                    </h:inputText>
+                </div>
+                <div class="col-sm-offset-2 col-sm-10">
+                    <h:message for="startDate" class="help-block"
+                               errorClass="text-danger"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <h:outputLabel value="Date to" for="endDate" class="col-sm-2" />
+                <div class="col-sm-10">
+                    <h:inputText id="endDate"
+                                 value="#{keywordController.gatheringSettings.endDate}"
+                                 class="form-control"
+                                 disabled="#{keywordController.gatheringSettings.wholeCalendar}"
+                                 required="#{!keywordController.gatheringSettings.wholeCalendar}">
+                        <f:convertDateTime />
+                    </h:inputText>
+                </div>
+                <div class="col-sm-offset-2 col-sm-10">
+                    <h:message for="endDate" class="help-block"
+                               errorClass="text-danger"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <h:outputLabel value="Minimal Occurrence" for="minOccurrence" class="col-sm-2" />
+                <div class="col-sm-10">
+                    <h:inputText id="minOccurrence"
+                                 value="#{keywordController.gatheringSettings.minOccurence}"
+                                 class="form-control" />
+                </div>
+                <div class="col-sm-offset-2 col-sm-10">
+                    <h:message for="minOccurrence" class="help-block"
+                               errorClass="text-danger"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <h:outputLabel value="Matches RegExp" for="regExp" class="col-sm-2" />
+                <div class="col-sm-10">
+                    <h:inputText id="regExp"
+                                 value="#{keywordController.gatheringSettings.pattern}"
+                                 class="form-control" />
+                </div>
+                <div class="col-sm-offset-2 col-sm-10">
+                    <h:message for="regExp" class="help-block"
+                               errorClass="text-danger"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <div class="checkbox">
+                        <h:outputLabel>
+                            <h:selectBooleanCheckbox id="removeDiacritics"
+                                                     value="#{keywordController.gatheringSettings.ignoreDiacritics}"/>
+                            <h:outputText value=" Remove Diacritics" />
+                        </h:outputLabel>
                     </div>
                 </div>
-                <div class="form-group">
-                    <h:outputLabel value="Minimal Occurrence" for="minOccurrence" class="col-sm-2" />
-                    <div class="col-sm-10">
-                        <h:inputText id="minOccurrence"
-                                     value="#{keywordController.gatheringSettings.minOccurence}"
-                                     class="form-control" />
-                    </div>
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <h:message for="minOccurrence" class="help-block"
-                                   errorClass="text-danger"/>
+                <div class="col-sm-offset-2 col-sm-10">
+                    <h:message for="removeDiacritics" class="help-block"
+                               errorClass="text-danger"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <div class="checkbox">
+                        <h:outputLabel>
+                            <h:selectBooleanCheckbox id="caseSensitive"
+                                                     value="#{keywordController.gatheringSettings.caseSensitive}"/>
+                            <h:outputText value=" Case Sensitive" />
+                        </h:outputLabel>
                     </div>
                 </div>
-                <div class="form-group">
-                    <h:outputLabel value="Matches RegExp" for="regExp" class="col-sm-2" />
-                    <div class="col-sm-10">
-                        <h:inputText id="regExp"
-                                     value="#{keywordController.gatheringSettings.pattern}"
-                                     class="form-control" />
-                    </div>
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <h:message for="regExp" class="help-block"
-                                   errorClass="text-danger"/>
-                    </div>
+                <div class="col-sm-offset-2 col-sm-10">
+                    <h:message for="caseSensitive" class="help-block"
+                               errorClass="text-danger"/>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <div class="checkbox">
-                            <h:outputLabel>
-                                <h:selectBooleanCheckbox id="removeDiacritics"
-                                                         value="#{keywordController.gatheringSettings.ignoreDiacritics}"/>
-                                <h:outputText value=" Remove Diacritics" />
-                            </h:outputLabel>
-                        </div>
-                    </div>
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <h:message for="removeDiacritics" class="help-block"
-                                   errorClass="text-danger"/>
-                    </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <h:commandButton value="Gather"
+                                     action="#{keywordController.importCalendar}"
+                                     class="btn btn-primary"/>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <div class="checkbox">
-                            <h:outputLabel>
-                                <h:selectBooleanCheckbox id="caseSensitive"
-                                                         value="#{keywordController.gatheringSettings.caseSensitive}"/>
-                                <h:outputText value=" Case Sensitive" />
-                            </h:outputLabel>
-                        </div>
-                    </div>
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <h:message for="caseSensitive" class="help-block"
-                                   errorClass="text-danger"/>
-                    </div>
-                </div>
-            </fieldset>
-            <h:commandButton value="Gather"
-                             action="#{keywordController.importCalendar}"
-                             class="btn btn-primary"/>
+            </div>
         </h:form>
     </ui:define>
 </ui:composition>
