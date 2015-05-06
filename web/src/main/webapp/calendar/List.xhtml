@@ -42,7 +42,9 @@
                         <h:outputText value=" Edit" />
                     </h:commandLink>
                     <h:outputText value=" " />
-                    <h:commandLink class="btn btn-xs btn-danger">
+                    <h:commandLink class="btn btn-xs btn-danger"
+                                   action="#{calendarController.delete()}"
+                                   onclick="return confirm('Are you sure you want to delete it?');">
                         <h:panelGroup class="glyphicon glyphicon-remove" />
                         <h:outputText value=" Delete" />
                     </h:commandLink>

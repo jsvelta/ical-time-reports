@@ -27,7 +27,6 @@ public class CalendarController implements Serializable {
 
     private ListDataModel<Calendar> items;
     private Calendar selected;
-    private int selectedItemIndex;
 
     @EJB
     private CalendarFacade ejbFacade;
@@ -63,7 +62,6 @@ public class CalendarController implements Serializable {
         if (selected == null) {
             selected = new Calendar();
             selected.setUser(loginController.getAuthenticatedUser());
-            selectedItemIndex = -1;
         }
         return selected;
     }
@@ -93,7 +91,6 @@ public class CalendarController implements Serializable {
     public PageNavigation prepareCreate() {
         selected = new Calendar();
         selected.setUser(loginController.getAuthenticatedUser());
-        selectedItemIndex = -1;
         return PageNavigation.CREATE;
     }
 
@@ -110,6 +107,12 @@ public class CalendarController implements Serializable {
             JsfUtil.addErrorMessage(e, "An unexpected error occurred during calendar creation. Please try again.");
         }
         return result;
+    }
+
+    public void delete() {
+        Calendar cal = getItems().getRowData();
+        getFacade().remove(cal);
+        recreateModel();
     }
 
 }
