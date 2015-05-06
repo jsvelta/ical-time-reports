@@ -121,7 +121,7 @@ public class LoginController implements Serializable {
             request.logout();
             // clear the session
             ((HttpSession) context.getExternalContext().getSession(false)).invalidate();
-            JsfUtil.addErrorMessage("User successfully logged out!");
+            JsfUtil.addSuccessMessage("User successfully logged out!");
         } catch (ServletException ex) {
             LOG.log(Level.SEVERE, null, ex);
             JsfUtil.addErrorMessage("Critical error during logout process");
