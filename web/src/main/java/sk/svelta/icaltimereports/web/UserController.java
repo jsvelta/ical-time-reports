@@ -92,9 +92,9 @@ public class UserController implements Serializable {
      *
      * @return page to be displayed (Create)
      */
-    public PageNavigation prepareCreate() {
+    public String prepareCreate() {
         this.selected = null;
-        return PageNavigation.CREATE;
+        return "/user/Create";
     }
 
     /**

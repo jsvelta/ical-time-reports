@@ -9,7 +9,7 @@
     <ui:define name="body">
         <h:form>
             <h1>List of Users</h1>
-            <h:commandLink value="Create New User" action="Create" class="btn btn-default"/>
+            <h:commandLink value="Create New User" action="#{userController.prepareCreate()}" class="btn btn-default"/>
             <h:dataTable value="#{userController.items}"
                          var="user"
                          class="table table-striped table-hover">

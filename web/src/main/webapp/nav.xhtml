@@ -40,7 +40,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage Users <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><h:commandLink action="/user/List" value="List of Users" /></li>
-                                <li><h:commandLink action="/user/Create" value="Create New User" /></li>
+                                <li><h:commandLink action="#{userController.prepareCreate()}" value="Create New User" /></li>
                             </ul>
                         </li>
                     </ul>
