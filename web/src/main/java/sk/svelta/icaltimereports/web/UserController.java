@@ -27,7 +27,6 @@ public class UserController implements Serializable {
 
     private ListDataModel<User> items;
     private User selected;
-    private int selectedItemIndex;
 
     @EJB
     private UserFacade ejbFacade;
@@ -62,7 +61,7 @@ public class UserController implements Serializable {
     public User getSelected() {
         if (this.selected == null) {
             this.selected = new User();
-            this.selectedItemIndex = -1;
+            this.selected.setRole("User");
         }
         return this.selected;
     }
@@ -94,8 +93,7 @@ public class UserController implements Serializable {
      * @return page to be displayed (Create)
      */
     public PageNavigation prepareCreate() {
-        this.selected = new User();
-        this.selectedItemIndex = -1;
+        this.selected = null;
         return PageNavigation.CREATE;
     }
 
@@ -106,7 +104,6 @@ public class UserController implements Serializable {
      */
     public PageNavigation prepareEdit() {
         this.selected = getItems().getRowData();
-        this.selectedItemIndex = getItems().getRowIndex();
         return PageNavigation.EDIT;
     }
 
@@ -117,7 +114,6 @@ public class UserController implements Serializable {
      */
     public PageNavigation prepareView() {
         this.selected = getItems().getRowData();
-        this.selectedItemIndex = getItems().getRowIndex();
         return PageNavigation.VIEW;
     }
 
@@ -156,46 +152,6 @@ public class UserController implements Serializable {
             JsfUtil.addErrorMessage("An unexpected error occurred during customer creation. Please try again.");
         }
         return result;
-    }
-
-    /**
-     * Delete selected {@link User} and display next {@link User}
-     * from the list. If it was the last {@link User} in the list,
-     * display <code>List</code> page.
-     *
-     * @return page name to be displayed (View or List)
-     */
-    public PageNavigation destroyAndView() {
-        performDestroy();
-        recreateModel();
-        updateSelectedItem();
-        if (this.selectedItemIndex >= 0) {
-            return PageNavigation.VIEW;
-        } else {
-            return PageNavigation.LIST;
-        }
-    }
-
-    /**
-     * Delete selected user
-     */
-    private void performDestroy() {
-        try {
-            getFacade().remove(this.selected);
-            JsfUtil.addSuccessMessage("User was successfully deleted.");
-        } catch (Exception e) {
-            JsfUtil.addErrorMessage(e.getMessage());
-        }
-    }
-
-    private void updateSelectedItem() {
-        int count = getFacade().count();
-        if (this.selectedItemIndex >= count) {
-            this.selectedItemIndex = count - 1;
-        }
-        if (this.selectedItemIndex >= 0) {
-            this.selected = getFacade().findAll().get(this.selectedItemIndex);
-        }
     }
 
 }
