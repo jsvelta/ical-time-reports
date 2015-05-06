@@ -49,7 +49,7 @@ public class CalendarController implements Serializable {
      */
     public ListDataModel<Calendar> getItems() {
         if (items == null) {
-            items = new ListDataModel<>(getFacade().findAll());
+            items = new ListDataModel<>(getFacade().findByUser(loginController.getAuthenticatedUser()));
         }
         return items;
     }
