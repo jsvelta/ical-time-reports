@@ -69,6 +69,7 @@
                                  disabled="#{reportController.settings.wholeCalendar}"
                                  required="#{!reportController.settings.wholeCalendar}">
                         <f:convertDateTime />
+                        <f:passThroughAttribute name="type" value="date"/>
                     </h:inputText>
                 </div>
                 <div class="col-sm-offset-2 col-sm-10">
@@ -86,6 +87,7 @@
                                  disabled="#{reportController.settings.wholeCalendar}"
                                  required="#{!reportController.settings.wholeCalendar}">
                         <f:convertDateTime />
+                        <f:passThroughAttribute name="type" value="date"/>
                     </h:inputText>
                 </div>
                 <div class="col-sm-offset-2 col-sm-10">
