@@ -15,19 +15,18 @@ import java.io.Serializable;
 import java.net.URL;
 import java.nio.file.Files;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletResponse;
 import net.fortuna.ical4j.data.CalendarBuilder;
-import sk.svelta.icaltimereports.ejb.CalendarFacade;
+import sk.svelta.icaltimereports.entity.Calendar;
 import sk.svelta.icaltimereports.web.util.JsfUtil;
 
 /**
@@ -40,13 +39,14 @@ public class ReportController implements Serializable {
     private static final Logger LOG = Logger.getLogger(ReportController.class.getName());
     private static final long serialVersionUID = 1;
 
-    @EJB
-    private CalendarFacade calendarFacade;
-
     @Inject
     private KeywordController keywordController;
 
+    @Inject
+    private CalendarController calendarController;
+
     private Settings settings;
+    private int[] calendars;
 
     /**
      * @return array of GroupBy for selectOneListbox component
@@ -86,11 +86,21 @@ public class ReportController implements Serializable {
         this.settings = settings;
     }
 
+    public int[] getCalendars() {
+        return calendars;
+    }
+
+    public void setCalendars(int[] calendars) {
+        this.calendars = calendars;
+    }
+
     private List<ICalFile> getICalFiles() throws Exception {
         List<ICalFile> files = new ArrayList<>();
         CalendarBuilder builder = new CalendarBuilder();
-        for (sk.svelta.icaltimereports.entity.Calendar calendarEntity : calendarFacade.findAll()) {
-            URL url = new URL(calendarEntity.getUrl());
+        ListDataModel<Calendar> calendars = this.calendarController.getItems();
+        for (int calendarNo : getCalendars()) {
+            calendars.setRowIndex(calendarNo);
+            URL url = new URL(calendars.getRowData().getUrl());
             ICalFile file = new ICalFile(builder.build(url.openStream()));
             file.parseWordsInEvents(true, false);
             files.add(file);
@@ -337,8 +347,8 @@ public class ReportController implements Serializable {
          * @param date to convert
          * @return new {@link Calendar} instance
          */
-        private Calendar createCalendar(Date date) {
-            Calendar calendar = Calendar.getInstance();
+        private java.util.Calendar createCalendar(Date date) {
+            java.util.Calendar calendar = java.util.Calendar.getInstance();
             calendar.setTime(date);
             return calendar;
         }

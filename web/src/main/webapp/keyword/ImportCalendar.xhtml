@@ -54,7 +54,6 @@
                                  disabled="#{keywordController.gatheringSettings.wholeCalendar}"
                                  required="#{!keywordController.gatheringSettings.wholeCalendar}">
                         <f:convertDateTime />
-                        <f:passThroughAttribute name="type" value="date"/>
                     </h:inputText>
                 </div>
                 <div class="col-sm-offset-2 col-sm-10">
@@ -71,7 +70,6 @@
                                  disabled="#{keywordController.gatheringSettings.wholeCalendar}"
                                  required="#{!keywordController.gatheringSettings.wholeCalendar}">
                         <f:convertDateTime />
-                        <f:passThroughAttribute name="type" value="date"/>
                     </h:inputText>
                 </div>
                 <div class="col-sm-offset-2 col-sm-10">
@@ -85,8 +83,6 @@
                     <h:inputText id="minOccurrence"
                                  value="#{keywordController.gatheringSettings.minOccurence}"
                                  class="form-control">
-                        <f:passThroughAttribute name="type" value="number"/>
-                        <f:passThroughAttribute name="min" value="1"/>
                     </h:inputText>
                 </div>
                 <div class="col-sm-offset-2 col-sm-10">
